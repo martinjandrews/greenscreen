@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Green Screen - Monitor Your Builds</title>
+    <meta http-equiv="refresh" content="15" />
+    <link rel='stylesheet' href='/styles.css' type='text/css' media="screen">
+  </head>
+  <body>
+    <style type="text/css">
+      .status {
+      	width: <%= 100 / @columns %>%;
+      	height: <%= 100 / @rows %>%;
+      }
+      h1 {
+        margin-top: <%= 50 / @rows %>px;
+        font-size: <%= 100 / @rows * 3 %>px;
+      }
+    </style>
+
+    <% @projects.each do |project| %>
+      <div class="status <%= project.last_build_status %>">
+        <div class='border'>
+          <h1 class="<%= project.activity %>"><a href="<%= project.web_url%>"><%= project.name %></a></h1>
+          Build <%= project.last_build_label %> was a <%= project.last_build_status %> at <%= project.last_build_time %>
+        </div>
+      </div>
+    <% end %>
+  </body>
+</html>

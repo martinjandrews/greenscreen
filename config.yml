@@ -1,0 +1,6 @@
+# Uncomment the last four lines to add a build server (yes, including the one that starts with a -).
+# If you want to add more than one build server, you can duplicate that set of lines.
+# - 
+#   url: http://hudson.mybuildserver.com/cc.xml
+#   username: hudson
+#   password: secretsquirrel

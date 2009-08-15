@@ -1,0 +1,50 @@
+body {
+	text-align: center;
+	font-size: small;
+	margin: 0;
+}
+
+div {
+	margin: 0
+	padding: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.clear {
+	border: none;
+	clear: both;
+}
+
+.status {
+	float: left;
+}
+
+.border {
+  height: 100%;
+  border: black 1px solid;
+}
+
+.success {
+	background-color: #76EE00;
+}
+
+.failure {
+	background-color: #FA8072;
+}
+
+.unknown {
+	background-color: #999999;
+}
+
+.building {
+	text-decoration: blink;
+}
