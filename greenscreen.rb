@@ -6,16 +6,25 @@ require 'hpricot'
 require 'open-uri'
 
 get '/' do
-  @projects = []
-  
   servers = YAML.load_file 'config.yml'
-
   return "Add the details of build server to the config.yml file to get started" unless servers
   
+  @projects = []
+
   servers.each do |server|
     xml = REXML::Document.new(open(server["url"], :http_basic_authentication=>[server["username"], server["password"]]))
     projects = xml.elements["//Projects"]
-    @projects = @projects + projects.collect {|project| Project.new(project)}
+    
+    projects.each do |project|
+      monitored_project = MonitoredProject.new(project)
+      if server["jobs"]
+        if server["jobs"].detect {|job| job == monitored_project.name}
+          @projects << monitored_project
+        end
+      else
+        @projects << monitored_project
+      end
+    end
   end
 
   @columns = 1.0
@@ -28,7 +37,7 @@ get '/' do
   erb :index
 end
 
-class Project
+class MonitoredProject
   attr_reader :name, :last_build_status, :activity, :last_build_time, :web_url, :last_build_label
   
   def initialize(project)

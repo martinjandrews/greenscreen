@@ -1,6 +1,25 @@
-# Uncomment the last four lines to add a build server (yes, including the one that starts with a -).
-# If you want to add more than one build server, you can duplicate that set of lines.
+# To get started, use one of the configurations below to point it at your build server.
+# You'll need to include the line starting with a '-'.  That's how the config files knows it's a list.
+
+
+# List all jobs running on a server
 # - 
-#   url: http://hudson.mybuildserver.com/cc.xml
-#   username: hudson
-#   password: secretsquirrel
+#   url: http://localhost:8080/cc.xml
+
+
+# A server with basic authentication.
+# - 
+#   url: http://localhost:8080/cc.xml
+#   username: hudson-user
+#   password: hudson-password
+
+
+# If you have a lot of jobs, and you only want to show the status of some of them, 
+# try listing them explicitly
+# - 
+#   url: http://localhost:8080/cc.xml
+#   username: hudson-user
+#   password: hudson-password
+#   jobs: 
+#     - roodi
+#     - runway
