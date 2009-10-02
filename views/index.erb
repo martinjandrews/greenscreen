@@ -3,8 +3,18 @@
     <title>Green Screen - Monitor Your Builds</title>
     <meta http-equiv="refresh" content="15" />
     <link rel='stylesheet' href='/styles.css' type='text/css' media="screen">
-  </head>
-  <body>
+    <script type="text/javascript" src="/prototype.js"></script>
+    <script type="text/javascript" src="/date.js"></script>
+    <script type="text/javascript">
+
+      document.observe("dom:loaded", function() {
+        $$("span.build_time").each(function(element) { 
+          var ts = new Date(element.innerHTML);
+          element.innerHTML = ts.relativeTimeInWords(new Date());
+        });
+      });
+
+    </script>
     <style type="text/css">
       .status {
       	width: <%= 100 / @columns %>%;
@@ -15,12 +25,13 @@
         font-size: <%= 100 / @rows * 3 %>px;
       }
     </style>
-
+  </head>
+  <body>
     <% @projects.each do |project| %>
       <div class="status <%= project.last_build_status %>">
-        <div class='border'>
+        <div class="border">
           <h1 class="<%= project.activity %>"><a href="<%= project.web_url%>"><%= project.name %></a></h1>
-          Build <%= project.last_build_label %> was a <%= project.last_build_status %> at <%= project.last_build_time %>
+          <p>Build <strong><%= project.last_build_label %></strong> was a <strong><%= project.last_build_status %></strong> <span class="build_time" title="<%= project.last_build_time %>"><%= project.last_build_time %></span></p>
         </div>
       </div>
     <% end %>
