@@ -4,8 +4,8 @@ GreenScreen is a build monitoring tool that is designed to be used as a dynamic 
 
 == Getting Started ==
 
-GreenScreen depends on Sinatra to run.  You can install it via rubygems:
-  sudo gem install sinatra
+GreenScreen depends on Sinatra and hpricot to run.  You can install them via rubygems:
+  sudo gem install sinatra hpricot
 
 To get the GreenScreen application itself, you can clone it from git here:
   git clone git://github.com/martinjandrews/greenscreen.git
